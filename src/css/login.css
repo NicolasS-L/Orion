@@ -1,0 +1,76 @@
+@import './root.css';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(to right, var(--background-light)50% , var(--backgroun-dark) 50%);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: .5rem;
+  padding: 1.5rem;
+  width: 20%;
+  height: 25rem;
+  gap: .5rem;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+}
+
+label {
+  font-weight: 300;
+}
+
+input {
+  padding: .5rem .5rem; 
+  border-radius: .5rem;
+  border: 1px solid;
+  border: 1px solid var(--color-border);
+  margin-bottom: 1rem;
+}
+
+input::placeholder {
+  color: var(--text-dark2);
+}
+
+.btn {
+  padding: .5rem 1.5rem;
+  border-radius: .5rem;
+  border: none;
+  color: var(--color-white);
+  font-weight: 200;
+  background-color: var(--color-btn);
+  margin-bottom: .5rem;
+  transition: background-color .5s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--color-btn-hoover);
+}
+
+.lostPass {
+  font-size: .85rem;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color .5s ease;
+}
+
+.lostPass:hover {
+  color: var(--text-dark2);
+}
