@@ -1,9 +1,12 @@
 :root {
-  --background-light: #ffffff;
-  --background-dark: #0a0e2a;
-  --color-white: #ffffff;
-  --color-border: #ccc;
-  --text-dark2: #555;
-  --color-btn: #1877f2;
-  --color-btn-hoover: #1259b2;
+  --background-light: #F3F3F3;
+  --background-dark: #001133;
+  --text-dark1: #E0E0E0;
+  --text-dark2: #A0A0A0;
+  --color-white: #FFFFFF; 
+  --color-black: #000000; 
+  --color-btn: #333333;
+  --color-btn-hoover: #595959;
+  --color-border: #E0E0E0;
+  --color-error:  #E53935;
 }
