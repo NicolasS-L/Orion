@@ -3,8 +3,6 @@ import '../css/login.css'
 import { useState } from "react";
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { signInWithPopup } from "firebase/auth";
-import { auth, googleProvider } from '../firebase'
 
 
 function Login() {
@@ -14,17 +12,6 @@ function Login() {
 
   const { login } = useAuth()
   const navigate = useNavigate()
-
- const handleLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
-      console.log("Usuário logado:", user);
-
-    } catch (error) {
-      console.error("Erro no login:", error);
-    }
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -82,7 +69,7 @@ function Login() {
         <div className='line'>ou</div>
 
         <div className='icons'> 
-          <span className="google" onClick={handleLogin}><FcGoogle size={40}/></span>
+          <span className="google"><FcGoogle size={40}/></span>
           <p>Google</p>
         </div>
       </form>
