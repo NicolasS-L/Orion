@@ -5,6 +5,7 @@ import Menu from "./Menu";
 import { AuthProvider } from "./context/AuthContext";
 import NotFound from "./components/NotFound";
 import Transacao from "./components/transacao";
+import Register from "./components/Register"
 
 
 
@@ -15,6 +16,7 @@ function App() {
         <Menu />
         <Routes>
           <Route path="/" element={<Login />} /> 
+          <Route path="/register" element={<Register />} />
           <Route path="/transacao" element={<Transacao />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />

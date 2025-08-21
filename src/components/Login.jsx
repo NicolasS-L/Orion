@@ -1,11 +1,10 @@
-import styles from '../css/login.module.css'
+import styles from '../css/Login.module.css'
 import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from '../firebase'
-// Certifique-se de importar o axios
 import axios from 'axios';
 
 function Login() {
@@ -75,7 +74,7 @@ function Login() {
   }
 
   return (
-    <div className={`${styles.container} ${styles.cardForm}`}>
+    <div className={`${styles.container}`}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
@@ -99,7 +98,7 @@ function Login() {
 
         <div className={styles.links}>
           <p className={styles.linkTexts} onClick={() => navigate("/esqueceu-senha")}>Esqueceu a senha?</p>
-          <p className={styles.linkTexts} onClick={() => navigate("/cadastro")}>Cadastre-se</p>
+          <p className={styles.linkTexts} onClick={() => navigate("/register")}>Cadastre-se</p>
         </div>
 
         <div className={styles.line}>ou</div>

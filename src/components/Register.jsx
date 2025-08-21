@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Register.css";
+import styles from "../css/Register.module.css"; // importando módulo css
 import { FaFacebookF, FaGoogle, FaTwitter } from "react-icons/fa";
 
 export default function Register() {
@@ -9,8 +9,8 @@ export default function Register() {
   const [confirma, setConfirma] = useState("");
   const [erro, setErro] = useState("");
 
-  function cadastrar(e) {
-    e.preventDefault();
+  function cadastrar(event) {
+    event.preventDefault();
 
     if (!nome || !email || !senha || !confirma) {
       setErro("Preencha todos os campos.");
@@ -28,15 +28,14 @@ export default function Register() {
   }
 
   return (
-    <div className="login-container">
-      <div className="login-form-section">
-        <div className="login-box">
+    <div className={styles.loginContainer}>
+      <div className={styles.loginFormSection}>
+        <div className={styles.loginBox}>
           <h2>Criar Conta</h2>
 
-          
-          {erro && <p className="error">{erro}</p>}
+          {erro && <p className={styles.error}>{erro}</p>}
 
-          <form onSubmit={cadastrar}>
+          <form className={styles.form} onSubmit={cadastrar}>
             <label>Nome completo</label>
             <input
               type="text"
@@ -69,39 +68,37 @@ export default function Register() {
               onChange={(e) => setConfirma(e.target.value)}
             />
 
-            <button className="btn-enter" type="submit">
+            <button className={styles.btnEnter} type="submit">
               Cadastrar
             </button>
           </form>
 
-          <div className="login-links">
+          <div className={styles.loginLinks}>
             <span>Já tem conta?</span>
             <a href="#">Entrar</a>
           </div>
 
-          <div className="divider">
+          {/* <div className={styles.divider}>
             <span>OU</span>
           </div>
 
-          <div className="social-login">
-            <button className="btn-social facebook">
+          <div className={styles.socialLogin}>
+            <button className={`${styles.btnSocial} ${styles.facebook}`}>
               <FaFacebookF size={20} />
             </button>
-            <button className="btn-social google">
+            <button className={`${styles.btnSocial} ${styles.google}`}>
               <FaGoogle size={20} />
             </button>
-            <button className="btn-social twitter">
+            <button className={`${styles.btnSocial} ${styles.twitter}`}>
               <FaTwitter size={20} />
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 
-      <div className="login-brand-section">
-        <div className="brand-content">
-          <div className="brand-logo">
-            <img src="src/images/orionOficial.png" alt="Logo Orion" />
-          </div>
+      <div className={styles.loginBrandSection}>
+        <div className={styles.right}>
+          <img src="Orion.png" alt="Ícone Orion" />
           <h1>Orion</h1>
           <p>Clareza para as suas finanças</p>
         </div>
