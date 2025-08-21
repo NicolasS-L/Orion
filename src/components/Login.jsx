@@ -1,8 +1,9 @@
-import { FcGoogle } from "react-icons/fc";
 import '../css/login.css'
 import { useState } from "react";
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from '../firebase'
 
 
 function Login() {
@@ -12,6 +13,30 @@ function Login() {
 
   const { login } = useAuth()
   const navigate = useNavigate()
+
+  const loginGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider)
+      const token = await result.user.getIdToken()
+
+      const response = await axios.post(
+        "URL_BACKEND",
+        {},
+        {
+         headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+         },
+        }
+      )
+
+      console.log("Resposta do backend:", response.data)
+
+
+    } catch (error) {
+      console.error("Erro no login Google:", error)
+    }
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -69,7 +94,7 @@ function Login() {
         <div className='line'>ou</div>
 
         <div className='icons'> 
-          <span className="google"><FcGoogle size={40}/></span>
+          <span className="google" onClick={loginGoogle}><FcGoogle size={40}/></span>
           <p>Google</p>
         </div>
       </form>
