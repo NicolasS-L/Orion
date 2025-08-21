@@ -1,10 +1,12 @@
-import '../css/login.css'
+import styles from '../css/login.module.css'
+import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from '../firebase'
-
+// Certifique-se de importar o axios
+import axios from 'axios';
 
 function Login() {
   const [email, setEmail] = useState("")
@@ -23,15 +25,14 @@ function Login() {
         "URL_BACKEND",
         {},
         {
-         headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-         },
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
         }
       )
 
       console.log("Resposta do backend:", response.data)
-
 
     } catch (error) {
       console.error("Erro no login Google:", error)
@@ -65,7 +66,7 @@ function Login() {
 
     const success = await login(email, password)
 
-    if(!success) {
+    if (!success) {
       setError("Email ou senha inválidos")
     } else {
       setError("")
@@ -73,33 +74,43 @@ function Login() {
     }
   }
 
-  return ( 
-    <div className='container cardForm'>
-      <form className='form' onSubmit={handleSubmit}>
-        <label htmlFor="email" >Email</label>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Digite seu e-mail'/>
+  return (
+    <div className={`${styles.container} ${styles.cardForm}`}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <label htmlFor="email">Email</label>
+        <input
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder='Digite seu e-mail'
+        />
 
-        <label htmlFor="password" >Senha</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Digite sua senha' />
+        <label htmlFor="password">Senha</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder='Digite sua senha'
+        />
 
-        {erro && <p className='erro'>{erro}</p> }
+        {erro && <p className={styles.erro}>{erro}</p>}
 
-        <button type="submint" className='btn'>Entrar</button>
+        <button type="submit" className={styles.btn}>Entrar</button>
 
-        <div className='links'>
-        <p className='linkTexts' onClick={() => navigate("/esqueceu-senha")}>Esqueceu a senha?</p>
-        <p className='linkTexts' onClick={() => navigate("/cadastro")}>Cadastre-se</p>
+        <div className={styles.links}>
+          <p className={styles.linkTexts} onClick={() => navigate("/esqueceu-senha")}>Esqueceu a senha?</p>
+          <p className={styles.linkTexts} onClick={() => navigate("/cadastro")}>Cadastre-se</p>
         </div>
 
-        <div className='line'>ou</div>
+        <div className={styles.line}>ou</div>
 
-        <div className='icons'> 
-          <span className="google" onClick={loginGoogle}><FcGoogle size={40}/></span>
+        <div className={styles.icons}>
+          <span className={styles.google} onClick={loginGoogle}><FcGoogle size={40} /></span>
           <p>Google</p>
         </div>
       </form>
 
-      <div className='right'>
+      <div className={styles.right}>
         <img src="Orion.png" alt="Ícone Orion" />
         <h1>Orion</h1>
         <p>Clareza para as suas finanças</p>
